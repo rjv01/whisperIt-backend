@@ -12,15 +12,19 @@ const registerUser = asyncHandler(async (req,res)=>{
 
     if(!name || !email || !password ){
         // res.status(400);
-        res.status(401).json({ message: "Please fill required fields" });
+        res.status(400).json({ message: "Please fill required fields" });
         // throw new Error("Please fill required fields");
     }
     
     const userExists = await User.findOne({email});
+    const userName = await User.findOne({name});
     if(userExists){
         // res.status(400);
-        res.status(401).json({ message: "Email is already registered" });
+        res.status(400).json({ message: "Email is already registered" });
         // throw new Error("Email is already registered");
+    }
+    if(userName){
+        res.status(400).json({message:"name already exists!"})
     }
 
     const newUser = await User.create({
