@@ -14,8 +14,8 @@ const postRoute = require("./routes/postRoute");
 
 app.use(cookieParser());
 app.use(cors({
-  // origin: "http://localhost:3000",
-  origin: "http://localhost:5173",
+  // origin: "http://localhost:5173",
+  origin: "https://whisper-it-frontend.vercel.app",
   credentials: true,
 }));
 app.use(express.json());
